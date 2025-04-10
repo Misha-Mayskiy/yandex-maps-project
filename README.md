@@ -76,17 +76,6 @@ To run a script for a specific task, navigate to the project's **root directory*
 python -m tasks.<script_filename_without_py> [required_arguments]
 ```
 
-**Example: Running Task 1 (Search and Show):**
-
-```bash
-python -m tasks.task_01_search_and_show Москва, Красная площадь
-```
-
-**Example: Running Task 2 (Find and Show Pharmacy):**
-```bash
-python -m tasks.task_02_find_and_show_pharmacy "Москва, Ленинский проспект, 1"
-```
-
 See the "Task List" section below for specific arguments for each task.
 
 ## Adding New Tasks
@@ -104,4 +93,16 @@ See the "Task List" section below for specific arguments for each task.
 ## Task List
 
 *   **`task_01_search_and_show.py`**: Finds a geographical object by its address (provided as a command-line argument) using the Geocoder API. Displays the object on a Static Maps API image, automatically calculating the map scale (`spn`) to fit the object's bounds and adding a marker at its center.
-*   **`task_02_find_and_show_pharmacy.py`**: Finds the nearest pharmacy to an address specified as a command-line argument. It first uses the Geocoder API to get the coordinates of the address, then uses the Geosearch API to find the closest pharmacy. It displays a Static Maps API image with markers for both the original address (blue) and the found pharmacy (red), automatically adjusting the view to include both points. It also prints details about the pharmacy (name, address, hours) and the calculated distance to it in the console.
+    *   **Usage (ex.)** `python -m tasks.task_01_search_and_show Москва, Красная площадь`
+
+*   **`task_02_find_and_show_pharmacy.py`**: Finds the nearest pharmacy to an address specified as a command-line argument. It first uses the Geocoder API to get the coordinates of the address, then uses the Geosearch API to find the closest pharmacy. It displays a Static Maps API image with markers for both the original address (blue) and the found pharmacy (red), automatically adjusting the view to include both points.
+    *   **Usage (ex.)** `python -m tasks.task_02_find_and_show_pharmacy Москва, Ленинский проспект, 1`
+
+*   **`task_03_find_10_pharmacies.py`**: Finds up to 10 nearest pharmacies to an address specified as a command-line argument using Geocoder and Geosearch APIs. Displays a Static Maps API image with markers for all found pharmacies. Markers are color-coded based on operating hours: green for 24/7, blue for standard hours, grey for unknown hours.
+    *   **Usage (ex.):** `python -m tasks.task_03_find_10_pharmacies "Санкт-Петербург, Невский проспект, 28"`
+
+*   **`task_04_find_district.py`**: Определяет административный район, к которому относится адрес, заданный в командной строке. Сначала получает координаты адреса, затем использует эти координаты для обратного геокодирования с параметром `kind=district`.
+    *   **Usage (ex.):** `python -m tasks.task_04_find_district "Москва, улица Льва Толстого, 16"`
+
+*   **`task_05_guess_city_game.py`**: Запускает прототип игры "Угадай город". Программа загружает карты для списка предопределенных городов, стараясь выбрать масштаб и тип карты (`sat,skl`) так, чтобы название города не было видно. Затем отображает эти карты в случайном порядке в окне Pygame. Игрок может листать карты (слайды), нажимая любую клавишу. Название города для текущего слайда выводится в консоль (в реальной игре его нужно было бы угадывать).
+    *   **Usage:** `python -m tasks.task_05_guess_city_game` (No command-line arguments needed)
