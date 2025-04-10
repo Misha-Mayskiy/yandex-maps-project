@@ -1,2 +1,102 @@
-# yandex-maps-project
-Python scripts demonstrating Yandex Maps API usage (Geocoder, Static Maps, Geosearch) for various tasks.
+# Yandex Maps API Python Scripts Project
+
+This repository contains a collection of Python scripts demonstrating the use of various Yandex Maps APIs (Geocoder, Static Maps, Geosearch) to solve specific tasks.
+
+## Project Description
+
+Python project implementing tasks using Yandex Maps APIs: Geocoding, Static Maps rendering (with auto-scale/markers), and Geosearch for nearby places. Structured into reusable utils and specific task solutions. Educational project context.
+
+## Project Structure
+
+```
+yandex_map_project/
+├── .gitignore
+├── README.md
+├── requirements.txt
+├── utils/              # Utility modules
+│   ├── __init__.py
+│   ├── config.py       # API keys and server URLs
+│   ├── geo_utils.py    # Geodetic calculations (e.g., Haversine)
+│   └── map_utils.py    # Map parameter calculations (ll, spn)
+├── tasks/              # Scripts for specific tasks
+│   ├── __init__.py
+│   ├── task_01_search_and_show.py # Find object and show on map
+│   └── task_02_find_and_show_pharmacy.py # Find nearest pharmacy & show
+│   └── ...                        # Other task scripts
+```
+
+## Features
+
+*   Modular structure for code reuse (utilities in `utils/`).
+*   Centralized storage for API keys and URLs (in `utils/config.py`).
+*   Clear separation of scripts by task (in `tasks/`).
+*   Examples of using Geocoder, Static Maps, and Geosearch APIs.
+*   Automatic map scaling based on object boundaries (`task_01`).
+*   Automatic map positioning based on multiple points (`task_02`).
+*   Calculation of distances (Haversine formula).
+*   Displaying results using the Pillow library (opens in default OS image viewer).
+
+## Prerequisites
+
+*   Python 3.x
+*   Python libraries (see `requirements.txt`)
+
+## Installation
+
+1.  **Clone the repository:**
+    ```bash
+    git clone <your-repository-url>
+    cd yandex_map_project
+    ```
+2.  **(Recommended)** Create and activate a virtual environment:
+    ```bash
+    python -m venv venv
+    # Windows
+    venv\Scripts\activate
+    # macOS/Linux
+    source venv/bin/activate
+    ```
+3.  **Install dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+## API Keys
+
+**Important:** The API keys required for the scripts are stored in the `utils/config.py` file. This repository uses keys provided during an educational course (e.g., Yandex.Practicum). These keys have limitations and are intended for educational purposes only.
+
+For use in your own projects, you must obtain personal API keys from the [Yandex Developer Portal](https://developer.tech.yandex.ru/) and replace the values in `utils/config.py`. In real-world applications, API keys should **not** be stored directly in code or configuration files committed to version control; use environment variables or other secure methods.
+
+## Usage
+
+To run a script for a specific task, navigate to the project's root directory (`yandex_map_project`) in your terminal and execute the command, specifying the path to the script within the `tasks/` folder:
+
+```bash
+python tasks/<script_filename.py> [required_arguments]
+```
+
+See the "Task List" section below for specific arguments for each task.
+
+## Adding New Tasks
+
+1.  Create a new `.py` file inside the `tasks/` directory (e.g., `task_03_calculate_distance.py`).
+2.  Write the Python code to solve the new task.
+3.  Import necessary utilities and configuration from the `utils` directory:
+    ```python
+    from utils.map_utils import get_map_params # Example
+    from utils.geo_utils import haversine_distance # Example
+    from utils.config import GEOCODER_API_KEY, ... # Example
+    ```
+4.  Add a description of the task and its usage instructions to the "Task List" in this `README.md` file (optional but recommended).
+
+## Task List
+
+*   **`task_01_search_and_show.py`**: Finds a geographical object by its address (provided as a command-line argument) using the Geocoder API. Displays the object on a Static Maps API image, automatically calculating the map scale (`spn`) to fit the object's bounds and adding a marker at its center.
+    *   **Usage:** `python tasks/task_01_search_and_show.py <address>`
+    *   **Example:** `python tasks/task_01_search_and_show.py Moscow, Red Square`
+
+*   **`task_02_find_and_show_pharmacy.py`**: Finds the nearest pharmacy to an address specified as a command-line argument. It first uses the Geocoder API to get the coordinates of the address, then uses the Geosearch API to find the closest pharmacy. It displays a Static Maps API image with markers for both the original address (blue) and the found pharmacy (red), automatically adjusting the view to include both points. It also prints details about the pharmacy (name, address, hours) and the calculated distance to it in the console.
+    *   **Usage:** `python tasks/task_02_find_and_show_pharmacy.py <address>`
+    *   **Example:** `python tasks/task_02_find_and_show_pharmacy.py Moscow, Tverskaya Street, 1`
+
+*   **(Add descriptions for other tasks here as you create them)**
