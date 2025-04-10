@@ -70,10 +70,21 @@ For use in your own projects, you must obtain personal API keys from the [Yandex
 
 ## Usage
 
-To run a script for a specific task, navigate to the project's root directory (`yandex_map_project`) in your terminal and execute the command, specifying the path to the script within the `tasks/` folder:
+To run a script for a specific task, navigate to the project's **root directory** (`yandex_map_project`) in your terminal and execute the command using Python's `-m` flag to run it as a module:
 
 ```bash
-python tasks/<script_filename.py> [required_arguments]
+python -m tasks.<script_filename_without_py> [required_arguments]
+```
+
+**Example: Running Task 1 (Search and Show):**
+
+```bash
+python -m tasks.task_01_search_and_show Москва, Красная площадь
+```
+
+**Example: Running Task 2 (Find and Show Pharmacy):**
+```bash
+python -m tasks.task_02_find_and_show_pharmacy "Москва, Ленинский проспект, 1"
 ```
 
 See the "Task List" section below for specific arguments for each task.
@@ -93,11 +104,4 @@ See the "Task List" section below for specific arguments for each task.
 ## Task List
 
 *   **`task_01_search_and_show.py`**: Finds a geographical object by its address (provided as a command-line argument) using the Geocoder API. Displays the object on a Static Maps API image, automatically calculating the map scale (`spn`) to fit the object's bounds and adding a marker at its center.
-    *   **Usage:** `python tasks/task_01_search_and_show.py <address>`
-    *   **Example:** `python tasks/task_01_search_and_show.py Moscow, Red Square`
-
 *   **`task_02_find_and_show_pharmacy.py`**: Finds the nearest pharmacy to an address specified as a command-line argument. It first uses the Geocoder API to get the coordinates of the address, then uses the Geosearch API to find the closest pharmacy. It displays a Static Maps API image with markers for both the original address (blue) and the found pharmacy (red), automatically adjusting the view to include both points. It also prints details about the pharmacy (name, address, hours) and the calculated distance to it in the console.
-    *   **Usage:** `python tasks/task_02_find_and_show_pharmacy.py <address>`
-    *   **Example:** `python tasks/task_02_find_and_show_pharmacy.py Moscow, Tverskaya Street, 1`
-
-*   **(Add descriptions for other tasks here as you create them)**
