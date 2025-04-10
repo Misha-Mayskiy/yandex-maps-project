@@ -12,6 +12,7 @@ Python project implementing tasks using Yandex Maps APIs: Geocoding, Static Maps
 yandex_map_project/
 ├── .gitignore
 ├── README.md
+├── LICENSE
 ├── requirements.txt
 ├── utils/              # Utility modules
 │   ├── __init__.py
@@ -85,7 +86,7 @@ See the "Task List" section below for specific arguments for each task.
     ```python
     from utils.map_utils import get_map_params # Example
     from utils.geo_utils import haversine_distance # Example
-    from utils.config import GEOCODER_API_KEY, ... # Example
+    from utils.config import GEOCODER_API_KEY # Example
     ```
 4.  Add a description of the task and its usage instructions to the "Task List" in this `README.md` file (optional but recommended).
 
